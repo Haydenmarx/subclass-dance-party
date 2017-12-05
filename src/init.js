@@ -32,7 +32,7 @@ $(document).ready(function() {
     $('body').append(dancer.$node);
   });
 
-  $('#lineUpDancers').on('click', function(event) {
+  $('#lineUpDancers').on('click', function() {
     var dancers = $('.dancer');
     var lefty = 200;
     for (var i = 0; i < dancers.length; i++) {
@@ -42,7 +42,7 @@ $(document).ready(function() {
     }
   });
 
-  $('#randomizeDancers').on('click', function(event) {
+  $('#randomizeDancers').on('click', function() {
     var dancers = $('.dancer');
     for (var i = 0; i < dancers.length; i++) {
       var height = $(window).height();
@@ -52,6 +52,14 @@ $(document).ready(function() {
       $('.dancer')[i].style.top = ''.concat(top, 'px');
       $('.dancer')[i].style.left = ''.concat(left, 'px');
     }        
+  });
+
+  $('body').on('mouseover mouseout', '.dancer', function() {
+    var borderRad = '0px';
+    if (this.style['border-radius'] === '0px') {
+      borderRad = '10px';
+    }
+    this.style['border-radius'] = borderRad;    
   });
 });
 
