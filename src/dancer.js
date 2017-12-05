@@ -9,5 +9,10 @@ var makeDancer = function(top, left, timeBetweenSteps) {
 };
 
 makeDancer.prototype.step = function() {
-  setTimeout(this.step, this.timeBetweenSteps);
+  var innerThis = this;
+  var func = this.step;
+  var time = this.timeBetweenSteps;
+  setTimeout(function() {
+    func.call(innerThis);
+  }, time);
 };
