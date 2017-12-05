@@ -38,7 +38,7 @@ $(document).ready(function() {
     for (var i = 0; i < dancers.length; i++) {
       $('.dancer')[i].style.top = '200px';
       $('.dancer')[i].style.left = ''.concat(lefty, 'px');
-      lefty += 25;
+      lefty += 45;
     }
   });
 
@@ -56,10 +56,18 @@ $(document).ready(function() {
 
   $('body').on('mouseover mouseout', '.dancer', function() {
     var borderRad = '0px';
+    var borderWidth = '20px';
     if (this.style['border-radius'] === '0px') {
       borderRad = '10px';
+      borderWidth = '10px';
     }
+    this.style['border-width'] = borderWidth;
     this.style['border-radius'] = borderRad;    
+  });
+
+  $('body').on('click', '.dancer', function() {
+    this.remove();
+    // this.style['border-radius'] = borderRad;    
   });
 });
 
