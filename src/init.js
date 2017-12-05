@@ -31,5 +31,27 @@ $(document).ready(function() {
     );
     $('body').append(dancer.$node);
   });
+
+  $('#lineUpDancers').on('click', function(event) {
+    var dancers = $('.dancer');
+    var lefty = 200;
+    for (var i = 0; i < dancers.length; i++) {
+      $('.dancer')[i].style.top = '200px';
+      $('.dancer')[i].style.left = ''.concat(lefty, 'px');
+      lefty += 25;
+    }
+  });
+
+  $('#randomizeDancers').on('click', function(event) {
+    var dancers = $('.dancer');
+    for (var i = 0; i < dancers.length; i++) {
+      var height = $(window).height();
+      var width = ($(window).width());
+      var top = Math.floor(Math.random() * (height - 0) + 0);
+      var left = Math.floor(Math.random() * (width - 0) + 0);
+      $('.dancer')[i].style.top = ''.concat(top, 'px');
+      $('.dancer')[i].style.left = ''.concat(left, 'px');
+    }        
+  });
 });
 
