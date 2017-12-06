@@ -38,11 +38,10 @@ $(document).ready(function() {
     var dancers = $('.dancer');
     var lefty = 200;
     for (var i = 0; i < dancers.length; i++) {
+      window.dancers[i].move = false;
       $('.dancer')[i].style.top = '200px';
       $('.dancer')[i].style.left = ''.concat(lefty, 'px');
       lefty += 45;
-      window.dancers[i].move = false;
-      console.log(window.dancers[i]);
     }
   });
 

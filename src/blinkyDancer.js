@@ -21,19 +21,14 @@ makeBlinkyDancer.prototype.step = function() {
 
 
 makeBlinkyDancer.prototype.moveStep = function() {
-  console.log(this);
   var top = this.$node[0].style.top;
   top = Number(top.slice(0, -2));
-  if (top < $(window).height() - 100) {
-    top += 10;
-    top = ''.concat(top, 'px');
-    this.$node[0].style.top = top;
-  }
-  console.log('moving = ', this.move);
   if (this.move === true) {
+    if (top < $(window).height() - 100) {
+      top += 10;
+      top = ''.concat(top, 'px');
+      this.$node[0].style.top = top;
+    }
     makeDancer.prototype.moveStep.call(this, makeBlinkyDancer);   
   }
 };
-
-
-

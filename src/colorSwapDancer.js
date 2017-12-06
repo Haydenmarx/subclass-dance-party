@@ -6,7 +6,9 @@ var makeColorSwapDancer = function(top, left, timeBetweenSteps) {
   };
   this.$node.css(this.styleSettings);
   this.timeBetweenSteps = timeBetweenSteps;
+  this.move = true;
   makeDancer.prototype.step.call(this, makeColorSwapDancer);
+  makeDancer.prototype.moveStep.call(this, makeColorSwapDancer);
 };
 
 makeColorSwapDancer.prototype = Object.create(makeDancer.prototype);
@@ -19,4 +21,17 @@ makeColorSwapDancer.prototype.step = function() {
   var randomColor = ''.concat('rgb(', one, ', ', two, ', ', three, ')');
   this.$node.css('border-color', randomColor);
   makeDancer.prototype.step.call(this, makeColorSwapDancer);
+};
+
+makeColorSwapDancer.prototype.moveStep = function() {
+  var top = this.$node[0].style.top;
+  top = Number(top.slice(0, -2));
+  if (this.move === true) {
+    if (top < $(window).height() - 100) {
+      top += 10;
+      top = ''.concat(top, 'px');
+      this.$node[0].style.top = top;
+    }
+    makeDancer.prototype.moveStep.call(this, makeColorSwapDancer);   
+  }
 };

@@ -6,6 +6,11 @@ var makeDancer = function(top, left, timeBetweenSteps) {
     left: left
   };
   this.$node.css(this.styleSettings);
+  var one = Math.floor(Math.random() * (1000 - 0) + 0);
+  var two = Math.floor(Math.random() * (1000 - 0) + 0);
+  var three = Math.floor(Math.random() * (1000 - 0) + 0); 
+  var randomColor = ''.concat('rgb(', one, ', ', two, ', ', three, ')');
+  this.$node.css('border-color', randomColor);
 };
 
 makeDancer.prototype.step = function() {
@@ -21,7 +26,9 @@ makeDancer.prototype.moveStep = function() {
   var innerThis = this;
   var func = this.moveStep;
   var time = this.timeBetweenSteps;
-  setTimeout(function() {
-    func.call(innerThis);
-  }, time);
+  if (this.move === true) {
+    setTimeout(function() {
+      func.call(innerThis);
+    }, time);
+  }
 };
