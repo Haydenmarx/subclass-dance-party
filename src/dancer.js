@@ -16,3 +16,12 @@ makeDancer.prototype.step = function() {
     func.call(innerThis);
   }, time);
 };
+
+makeDancer.prototype.moveStep = function() {
+  var innerThis = this;
+  var func = this.moveStep;
+  var time = this.timeBetweenSteps;
+  setTimeout(function() {
+    func.call(innerThis);
+  }, time);
+};

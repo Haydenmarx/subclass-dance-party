@@ -29,7 +29,9 @@ $(document).ready(function() {
       $("body").width() * Math.random(),
       Math.random() * 1000
     );
+
     $('body').append(dancer.$node);
+    window.dancers.push(dancer);
   });
 
   $('#lineUpDancers').on('click', function() {
@@ -39,6 +41,8 @@ $(document).ready(function() {
       $('.dancer')[i].style.top = '200px';
       $('.dancer')[i].style.left = ''.concat(lefty, 'px');
       lefty += 45;
+      window.dancers[i].move = false;
+      console.log(window.dancers[i]);
     }
   });
 
@@ -51,10 +55,12 @@ $(document).ready(function() {
       var left = Math.floor(Math.random() * (width - 0) + 0);
       $('.dancer')[i].style.top = ''.concat(top, 'px');
       $('.dancer')[i].style.left = ''.concat(left, 'px');
+      window.dancers[i].move = true;
+      window.dancers[i].__proto__.moveStep.call(window.dancers[i]); 
     }        
   });
 
-  $('body').on('mouseover mouseout', '.dancer', function() {
+  $('body').on('mouseover', '.dancer', function() {
     var borderRad = '0px';
     var borderWidth = '20px';
     if (this.style['border-radius'] === '0px') {
@@ -67,7 +73,6 @@ $(document).ready(function() {
 
   $('body').on('click', '.dancer', function() {
     this.remove();
-    // this.style['border-radius'] = borderRad;    
   });
 });
 
